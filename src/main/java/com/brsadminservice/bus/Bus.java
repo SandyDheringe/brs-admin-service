@@ -2,6 +2,7 @@ package com.brsadminservice.bus;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -25,6 +26,7 @@ public class Bus {
     private Integer totalSeats;
 
     @Column(name = "is_deleted")
-    private Byte isDeleted;
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private Boolean isDeleted;
 
 }

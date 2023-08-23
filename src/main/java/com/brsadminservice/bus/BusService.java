@@ -26,4 +26,14 @@ public class BusService {
     public Optional<Bus> getBus(Integer busId) {
         return busRepository.findById(busId);
     }
+
+    public Bus deleteBus(Integer busId) {
+        Bus busDetail =busRepository.findById(busId).orElse(null);
+        if(busDetail!=null){
+           busDetail.setIsDeleted(true);
+           busRepository.saveAndFlush(busDetail);
+           return busDetail;
+        }
+        return null;
+    }
 }
