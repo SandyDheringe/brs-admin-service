@@ -19,16 +19,15 @@ public class BusService {
     }
 
     public List<Bus> getAllBuses() {
-
-        return busRepository.findAll();
+        return busRepository.findAllByIsDeleted(false);
     }
 
     public Optional<Bus> getBus(Integer busId) {
-        return busRepository.findById(busId);
+        return busRepository.findByIdAndIsDeleted(busId,false);
     }
 
     public Bus deleteBus(Integer busId) {
-        Bus busDetail =busRepository.findById(busId).orElse(null);
+        Bus busDetail =busRepository.findByIdAndIsDeleted(busId,false).orElse(null);
         if(busDetail!=null){
            busDetail.setIsDeleted(true);
            busRepository.saveAndFlush(busDetail);

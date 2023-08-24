@@ -1,9 +1,62 @@
 package com.brsadminservice.route;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.brsadminservice.exception.BRSResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/route")
 public class RouteController {
+
+
+
+    RouteService routeService;
+
+    @Autowired
+    RouteController(RouteService routeService) {
+        this.routeService = routeService;
+    }
+
+    @PostMapping
+    ResponseEntity<Route> saveRoute(@RequestBody Route route) {
+        Route routeDetail = routeService.saveRoute(route);
+        return ResponseEntity.status(HttpStatus.CREATED).body(routeDetail);
+    }
+
+    @PutMapping
+    ResponseEntity<Route> updateRoute(@RequestBody Route route) {
+        Route routeDetail = routeService.saveRoute(route);
+        return ResponseEntity.status(HttpStatus.CREATED).body(routeDetail);
+    }
+
+    @GetMapping
+    ResponseEntity<List<Route>> getAllRoutes() {
+        List<Route> routeDetails = routeService.getAllRoute();
+        return ResponseEntity.status(HttpStatus.CREATED).body(routeDetails);
+    }
+
+    @GetMapping("/{route_id}")
+    ResponseEntity<Route> getRoute(@PathVariable("route_id") Integer routeId) {
+        Optional<Route> routeDetail = routeService.getRoute(routeId);
+        if(routeDetail.isPresent()){
+            return ResponseEntity.status(HttpStatus.CREATED).body(routeDetail.get());
+        }
+        else {
+            throw new BRSResourceNotFoundException(String.format("Route details with id %d not found",routeId));
+        }
+    }
+
+    @DeleteMapping("/{route_id}")
+    ResponseEntity<Route> deleteRoute(@PathVariable("route_id") Integer routeId) {
+        Route routeDetail = routeService.deleteRoute(routeId);
+        if(routeDetail == null){
+            throw new BRSResourceNotFoundException(String.format("Route details with id %d not found",routeId));
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(routeDetail);
+    }
 }

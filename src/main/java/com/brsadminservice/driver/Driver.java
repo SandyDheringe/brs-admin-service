@@ -1,5 +1,6 @@
 package com.brsadminservice.driver;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "driver", schema = "bus_reservation_db")
 public class Driver {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "driver_id", nullable = false)

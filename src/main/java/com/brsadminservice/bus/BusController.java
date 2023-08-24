@@ -20,28 +20,24 @@ public class BusController {
         this.busService = busService;
     }
 
-    //https://api.brsservice.com/brs-admin-service/bus
     @PostMapping
     ResponseEntity<Bus> saveBus(@RequestBody Bus bus) {
         Bus busDetail = busService.saveBus(bus);
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
-    //https://api.brsservice.com/brs-admin-service/bus
     @PutMapping
     ResponseEntity<Bus> updateBus(@RequestBody Bus bus) {
         Bus busDetail = busService.saveBus(bus);
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
-    //https://api.brsservice.com/brs-admin-service/bus
     @GetMapping
     ResponseEntity<List<Bus>> getAllBuses() {
         List<Bus> busDetail = busService.getAllBuses();
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
-    //https://api.brsservice.com/brs-admin-service/bus/1
     @GetMapping("/{bus_id}")
     ResponseEntity<Bus> getBus(@PathVariable("bus_id") Integer busId) {
         Optional<Bus> busDetail = busService.getBus(busId);
@@ -53,7 +49,6 @@ public class BusController {
         }
     }
 
-    //https://api.brsservice.com/brs-admin-service/bus/1
     @DeleteMapping("/{bus_id}")
     ResponseEntity<Bus> deleteBus(@PathVariable("bus_id") Integer busId) {
         Bus busDetail = busService.deleteBus(busId);

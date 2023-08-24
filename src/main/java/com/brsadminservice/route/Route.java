@@ -1,7 +1,10 @@
 package com.brsadminservice.route;
 
+import com.brsadminservice.bus.Bus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -10,10 +13,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "route", schema = "bus_reservation_db")
 public class Route {
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "route_id", nullable = false)
     private Integer id;
+
+    @Column(name = "bus_id", nullable = false)
+    private Integer busId;
 
     @Column(name = "source", length = 100)
     private String source;
@@ -30,7 +37,8 @@ public class Route {
     @Column(name = "fare_amount")
     private Float fareAmount;
 
+    @JsonIgnore
     @Column(name = "is_deleted")
-    private Byte isDeleted;
-
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private Boolean isDeleted;
 }
