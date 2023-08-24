@@ -14,7 +14,7 @@ import java.util.Optional;
 public class RouteController {
 
 
-    RouteService routeService;
+    private final RouteService routeService;
 
     @Autowired
     RouteController(RouteService routeService) {

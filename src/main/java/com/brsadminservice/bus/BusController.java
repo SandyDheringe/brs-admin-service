@@ -13,7 +13,7 @@ import java.util.Optional;
 @RequestMapping("/api/v1")
 public class BusController {
 
-    BusService busService;
+    private final BusService busService;
 
     @Autowired
     BusController(BusService busService) {

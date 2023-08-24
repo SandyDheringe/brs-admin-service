@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class RouteService {
 
-    RouteRepository routeRepository;
+    private final RouteRepository routeRepository;
     @Autowired
     RouteService(RouteRepository routeRepository){
         this.routeRepository = routeRepository;

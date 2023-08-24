@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class BusService {
 
-    BusRepository busRepository;
+    private final BusRepository busRepository;
     @Autowired
     BusService(BusRepository busRepository){
         this.busRepository = busRepository;
