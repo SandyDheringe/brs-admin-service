@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "route", schema = "bus_reservation_db")
 public class Route {
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "route_id", nullable = false)
@@ -40,5 +39,5 @@ public class Route {
     @JsonIgnore
     @Column(name = "is_deleted")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 }

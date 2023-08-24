@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/bus")
+@RequestMapping("/api/v1")
 public class BusController {
 
     BusService busService;
@@ -20,25 +20,25 @@ public class BusController {
         this.busService = busService;
     }
 
-    @PostMapping
+    @PostMapping("/buses")
     ResponseEntity<Bus> saveBus(@RequestBody Bus bus) {
         Bus busDetail = busService.saveBus(bus);
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
-    @PutMapping
+    @PutMapping("/buses")
     ResponseEntity<Bus> updateBus(@RequestBody Bus bus) {
         Bus busDetail = busService.saveBus(bus);
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
-    @GetMapping
+    @GetMapping("/buses")
     ResponseEntity<List<Bus>> getAllBuses() {
         List<Bus> busDetail = busService.getAllBuses();
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
-    @GetMapping("/{bus_id}")
+    @GetMapping("/buses/{bus_id}")
     ResponseEntity<Bus> getBus(@PathVariable("bus_id") Integer busId) {
         Optional<Bus> busDetail = busService.getBus(busId);
         if(busDetail.isPresent()){
@@ -49,7 +49,7 @@ public class BusController {
         }
     }
 
-    @DeleteMapping("/{bus_id}")
+    @DeleteMapping("/buses/{bus_id}")
     ResponseEntity<Bus> deleteBus(@PathVariable("bus_id") Integer busId) {
         Bus busDetail = busService.deleteBus(busId);
         if(busDetail == null){
@@ -57,6 +57,5 @@ public class BusController {
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
-
 
 }

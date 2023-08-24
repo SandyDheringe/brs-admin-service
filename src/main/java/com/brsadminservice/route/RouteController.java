@@ -10,9 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/route")
+@RequestMapping("/api/v1")
 public class RouteController {
-
 
 
     RouteService routeService;
@@ -22,25 +21,25 @@ public class RouteController {
         this.routeService = routeService;
     }
 
-    @PostMapping
+    @PostMapping("/routes")
     ResponseEntity<Route> saveRoute(@RequestBody Route route) {
         Route routeDetail = routeService.saveRoute(route);
         return ResponseEntity.status(HttpStatus.CREATED).body(routeDetail);
     }
 
-    @PutMapping
+    @PutMapping("/routes")
     ResponseEntity<Route> updateRoute(@RequestBody Route route) {
         Route routeDetail = routeService.saveRoute(route);
         return ResponseEntity.status(HttpStatus.CREATED).body(routeDetail);
     }
 
-    @GetMapping
+    @GetMapping("/routes")
     ResponseEntity<List<Route>> getAllRoutes() {
         List<Route> routeDetails = routeService.getAllRoute();
         return ResponseEntity.status(HttpStatus.CREATED).body(routeDetails);
     }
 
-    @GetMapping("/{route_id}")
+    @GetMapping("/routes/{route_id}")
     ResponseEntity<Route> getRoute(@PathVariable("route_id") Integer routeId) {
         Optional<Route> routeDetail = routeService.getRoute(routeId);
         if(routeDetail.isPresent()){
@@ -51,7 +50,7 @@ public class RouteController {
         }
     }
 
-    @DeleteMapping("/{route_id}")
+    @DeleteMapping("/routes/{route_id}")
     ResponseEntity<Route> deleteRoute(@PathVariable("route_id") Integer routeId) {
         Route routeDetail = routeService.deleteRoute(routeId);
         if(routeDetail == null){

@@ -15,7 +15,6 @@ import java.util.Set;
 @Entity
 @Table(name = "bus", schema = "bus_reservation_db")
 public class Bus {
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bus_id", nullable = false)
@@ -33,6 +32,6 @@ public class Bus {
     @JsonIgnore
     @Column(name = "is_deleted")
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 
 }
