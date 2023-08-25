@@ -1,20 +1,17 @@
 package com.brsadminservice.bus;
 
-import com.brsadminservice.route.Route;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "bus", schema = "bus_reservation_db")
-public class Bus {
+@Table(name = "bus_route", schema = "bus_reservation_db")
+public class BusRoute {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bus_id", nullable = false)
@@ -28,6 +25,18 @@ public class Bus {
 
     @Column(name = "total_seats")
     private Integer totalSeats;
+
+    @Column(name = "source", nullable = false, length = 100)
+    private String source;
+
+    @Column(name = "destination", nullable = false, length = 100)
+    private String destination;
+
+    @Column(name = "duration")
+    private Integer duration;
+
+    @Column(name = "fare_amount")
+    private Float fareAmount;
 
     @JsonIgnore
     @Column(name = "is_deleted")

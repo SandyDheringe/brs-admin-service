@@ -1,6 +1,5 @@
 package com.brsadminservice.route;
 
-import com.brsadminservice.bus.Bus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;

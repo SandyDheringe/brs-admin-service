@@ -11,36 +11,36 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
-public class BusController {
+public class BusRouteController {
 
-    private final BusService busService;
+    private final BusRouteService busRouteService;
 
     @Autowired
-    BusController(BusService busService) {
-        this.busService = busService;
+    BusRouteController(BusRouteService busRouteService) {
+        this.busRouteService = busRouteService;
     }
 
     @PostMapping("/buses")
-    ResponseEntity<Bus> saveBus(@RequestBody Bus bus) {
-        Bus busDetail = busService.saveBus(bus);
+    ResponseEntity<BusRoute> saveBus(@RequestBody BusRoute bus) {
+        BusRoute busDetail = busRouteService.saveBus(bus);
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
     @PutMapping("/buses")
-    ResponseEntity<Bus> updateBus(@RequestBody Bus bus) {
-        Bus busDetail = busService.saveBus(bus);
+    ResponseEntity<BusRoute> updateBus(@RequestBody BusRoute bus) {
+        BusRoute busDetail = busRouteService.saveBus(bus);
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
     @GetMapping("/buses")
-    ResponseEntity<List<Bus>> getAllBuses() {
-        List<Bus> busDetail = busService.getAllBuses();
+    ResponseEntity<List<BusRoute>> getAllBuses() {
+        List<BusRoute> busDetail = busRouteService.getAllBuses();
         return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
     }
 
     @GetMapping("/buses/{bus_id}")
-    ResponseEntity<Bus> getBus(@PathVariable("bus_id") Integer busId) {
-        Optional<Bus> busDetail = busService.getBus(busId);
+    ResponseEntity<BusRoute> getBus(@PathVariable("bus_id") Integer busId) {
+        Optional<BusRoute> busDetail = busRouteService.getBus(busId);
         if(busDetail.isPresent()){
             return ResponseEntity.status(HttpStatus.CREATED).body(busDetail.get());
         }
@@ -50,8 +50,8 @@ public class BusController {
     }
 
     @DeleteMapping("/buses/{bus_id}")
-    ResponseEntity<Bus> deleteBus(@PathVariable("bus_id") Integer busId) {
-        Bus busDetail = busService.deleteBus(busId);
+    ResponseEntity<BusRoute> deleteBus(@PathVariable("bus_id") Integer busId) {
+        BusRoute busDetail = busRouteService.deleteBus(busId);
         if(busDetail == null){
             throw new BRSResourceNotFoundException(String.format("Bus details with id %d not found",busId));
         }
