@@ -1,4 +1,4 @@
-package com.brsadminservice.bus;
+package com.brsadminservice.busroute;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

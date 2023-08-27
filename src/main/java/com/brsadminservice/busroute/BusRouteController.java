@@ -1,4 +1,4 @@
-package com.brsadminservice.bus;
+package com.brsadminservice.busroute;
 
 import com.brsadminservice.exception.BRSResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +29,20 @@ public class BusRouteController {
     @PutMapping("/buses")
     ResponseEntity<BusRoute> updateBus(@RequestBody BusRoute bus) {
         BusRoute busDetail = busRouteService.saveBus(bus);
-        return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
+        return ResponseEntity.status(HttpStatus.OK).body(busDetail);
     }
 
     @GetMapping("/buses")
     ResponseEntity<List<BusRoute>> getAllBuses() {
         List<BusRoute> busDetail = busRouteService.getAllBuses();
-        return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
+        return ResponseEntity.status(HttpStatus.OK).body(busDetail);
     }
 
     @GetMapping("/buses/{bus_id}")
     ResponseEntity<BusRoute> getBus(@PathVariable("bus_id") Integer busId) {
         Optional<BusRoute> busDetail = busRouteService.getBus(busId);
         if(busDetail.isPresent()){
-            return ResponseEntity.status(HttpStatus.CREATED).body(busDetail.get());
+            return ResponseEntity.status(HttpStatus.OK).body(busDetail.get());
         }
        else {
             throw new BRSResourceNotFoundException(String.format("Bus details with id %d not found",busId));
@@ -50,12 +50,12 @@ public class BusRouteController {
     }
 
     @DeleteMapping("/buses/{bus_id}")
-    ResponseEntity<BusRoute> deleteBus(@PathVariable("bus_id") Integer busId) {
+    ResponseEntity deleteBus(@PathVariable("bus_id") Integer busId) {
         BusRoute busDetail = busRouteService.deleteBus(busId);
         if(busDetail == null){
             throw new BRSResourceNotFoundException(String.format("Bus details with id %d not found",busId));
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(busDetail);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.brsadminservice.bus;
+package com.brsadminservice.busroute;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
