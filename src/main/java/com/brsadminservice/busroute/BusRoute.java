@@ -20,8 +20,9 @@ public class BusRoute {
     @Column(name = "bus_number", length = 20)
     private String busNumber;
 
-    @Column(name = "bus_type", length = 20)
-    private String busType;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "bus_type", length = 50)
+    private BusType busType;
 
     @Column(name = "total_seats")
     private Integer totalSeats;
