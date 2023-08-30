@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.brsadminservice</groupId>
     <artifactId>brs-admin-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>brs-admin-service</name>
     <description>brs-admin-service</description>
     <properties>
