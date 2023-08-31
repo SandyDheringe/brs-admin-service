@@ -11,7 +11,7 @@ public class BrsAdminServiceApplication {
 //        SpringApplication.run(BrsAdminServiceApplication.class, args);
 
         new SpringApplicationBuilder()
-                .profiles("dev")
+                .profiles("prod")
                 .sources(BrsAdminServiceApplication.class)
                 .run(args);
     }
